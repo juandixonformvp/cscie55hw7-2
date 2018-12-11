@@ -1,6 +1,7 @@
 package cscie55.hw7.problem2;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.StringTokenizer;
 
 import org.apache.hadoop.conf.Configuration;
@@ -27,6 +28,9 @@ public class CsvReader {
         public void map(Object key, Text value, Context context
         ) throws IOException, InterruptedException {
             // TODO your code here
+            CSVParser parser = CSVParser.parse(value.toString(), CSVFormat.DEFAULT);
+
+
         }
     }
 
