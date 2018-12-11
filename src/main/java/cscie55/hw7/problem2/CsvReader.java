@@ -2,6 +2,7 @@ package cscie55.hw7.problem2;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.List;
 import java.util.StringTokenizer;
 
 import org.apache.hadoop.conf.Configuration;
@@ -17,6 +18,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import java.util.List;
 
 public class CsvReader {
     public static class TokenizerMapper
@@ -28,7 +30,13 @@ public class CsvReader {
         public void map(Object key, Text value, Context context
         ) throws IOException, InterruptedException {
             // TODO your code here
-            CSVParser parser = CSVParser.parse(value.toString(), CSVFormat.DEFAULT);
+            String line = value.toString();
+            CSVParser parser = CSVParser.parse(line, CSVFormat.DEFAULT);
+            List<CSVRecord> recordList = parser.getRecords();
+            for (CSVRecord record : recordList) {
+                word.set(record.get(3));
+            }
+
 
 
         }
@@ -42,6 +50,12 @@ public class CsvReader {
                            Context context
         ) throws IOException, InterruptedException {
             // TODO your code here
+            int sum = 0;
+            for (IntWritable val : values) {
+                sum += val.get();
+            }
+            result.set(sum);
+            context.write(key, result);
         }
     }
 
