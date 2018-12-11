@@ -18,7 +18,6 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import java.util.List;
 
 public class CsvReader {
     public static class TokenizerMapper
@@ -34,8 +33,12 @@ public class CsvReader {
             CSVParser parser = CSVParser.parse(line, CSVFormat.DEFAULT);
             List<CSVRecord> recordList = parser.getRecords();
             for (CSVRecord record : recordList) {
-                word.set(record.get(2));
-                context.write(word, one);
+                String material = record.get(2);
+                String title = record.get(6);
+                if (material.equals("SOUNDDISC")) {
+                    word.set(title);
+                    context.write(word, one);
+                }
             }
 
 
