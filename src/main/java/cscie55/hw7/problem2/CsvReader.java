@@ -34,7 +34,8 @@ public class CsvReader {
             CSVParser parser = CSVParser.parse(line, CSVFormat.DEFAULT);
             List<CSVRecord> recordList = parser.getRecords();
             for (CSVRecord record : recordList) {
-                word.set(record.get(3));
+                word.set(record.get(2));
+                context.write(word, one);
             }
 
 
