@@ -53,7 +53,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>cscie55.hw7.CsvReader</mainClass>
+                            <mainClass>cscie55.hw7.problem2.CsvReader</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

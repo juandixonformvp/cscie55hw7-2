@@ -36,7 +36,7 @@ public class CsvReader {
                 String material = record.get(2);
                 String title = record.get(6);
                 String subject = record.get(8).toLowerCase();
-                Boolean isHoliday = subject.matches(".*?\\bmusic\\b.*?");
+                Boolean isHoliday = subject.matches(".*?\\bholiday\\b.*?");
                 if (material.equals("SOUNDDISC") & isHoliday) {
                     word.set(title);
                     context.write(word, one);
